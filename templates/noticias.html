@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %} 
+<div id="noticias">
+    <div class="titulo-menu">
+        <div class="container">
+            <h1 class="">NOTICIAS</h1>
+        </div>
+    </div>
+    <div class="container my-5">
+        {% if lista_noticias|length > 0 %}
+            <div class="d-flex">
+                <div class="noticias w-100">
+                    {% for noticia in lista_noticias %}
+                    <div class="card-servicios border-bottom mb-3 pb-5">
+                        <div class="post-imagen">
+                            <img style="max-width: 837; max-height: 435.23;" src="/media/{{noticia.imagen}}"
+                                class="card-img-top" alt="...">
+                        </div>
+                        <div class="post-titulo mt-4 mb-2">
+                            <h3>{{noticia.titulo|upper}}</h3>
+                        </div>
+                        <div class="post-contenido">
+                            {{noticia.subtitulo}}
+                        </div>
+                        <div class="post-pie mt-4">
+                            <a href="{% url 'detalle-noticia' noticia.id %}" class="btn btn-outline-primary">MÁS
+                                DETALLES</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% else %}
+        <div class="d-flex justify-content-center align-items-center p-5">
+            <h1 class="p-5 text-muted">NO HAY NOTICIAS</h1>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

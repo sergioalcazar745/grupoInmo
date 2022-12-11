@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load inmueble_tags %}
+{% block content %} 
+<div id="proximas">
+    <div class="titulo-menu">
+        <div class="container">
+            <h1 class="">PRÓXIMAS</h1>
+        </div>
+    </div>
+    {% if lista_proximas %}
+    <div class="container my-5">
+        {% for venta in lista_proximas %}
+                {% if forloop.counter|parImpar == 0 %}
+                <div class="row my-5">
+                    <div class="col-12 col-md-6">
+                        <h2 class="text-center display-5 pt-5 pt-md-0">{{venta.localidad}}</h2>
+                        <div class="p-5">
+                            <p class="text-muted"><span>Dirección: </span> {{venta.direccion}}</p>
+                            <p class="text-muted"><span>Precio: </span> {{venta.precio}}€ + IVA</p>
+                            <p class="text-muted">{{venta.detalles|truncatechars:250}}</p>
+                            <p class="text-muted"><span>Comercializa por: </span> {{venta.comercializa}}</p>
+                            <a href="{% url 'detalles' venta.id %}" class="btn btn-primary mt-3">Más detalles</a>
+                        </div>   
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <img src="media/{{venta.portada}}" alt="historia" class="img-fluid rounded">
+                    </div>
+                </div>
+                {% else %}
+                <div class="row my-5">
+                    <div class="col-12 col-md-6">
+                        <img src="media/{{venta.portada}}" alt="historia" class="img-fluid rounded">
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <h2 class="text-center display-5 pt-5 pt-md-0">{{venta.localidad}}</h2>
+                        <div class="p-5">
+                            <p class="text-muted"><span>Dirección: </span> {{venta.direccion}}</p>
+                            <p class="text-muted"><span>Precio: </span> {{venta.precio}}€ + IVA</p>
+                            <p class="text-muted">{{venta.detalles|truncatechars:250}}</p>
+                            <p class="text-muted"><span>Comercializa por: </span> {{venta.comercializa}}</p>
+                            <a href="{% url 'detalles' venta.id %}" class="btn btn-primary mt-3">Más detalles</a>
+                        </div>                        
+                    </div>  
+                </div>                
+                {% endif %}              
+            {% endfor %}
+    </div>
+    {% else %}
+    <div class="d-flex justify-content-center align-items-center p-5">
+        <h1 class="p-5 text-muted">NO HAY PRÓXIMAS</h1>
+    </div>
+    {% endif %}  
+</div>
+{% endblock %}

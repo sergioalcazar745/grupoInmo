@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div id="detalles" class="my-5 pb-5">
+    <div class="container">
+        <div class="row">
+            {% for inm in inmueble %}
+            <h1 class="text-center p-3">{{inm.titulo}}</h1>
+            {% endfor %}
+            {% for imagen in imagenes %}
+            <div class="col-12 col-md-4 p-3">
+                <img id="myImg" src="../media/{{imagen}}" alt="imagen{{forloop.counter}}" class="img-fluid" onclick="clickImage(this)">
+                <!-- https://mdbcdn.b-cdn.net/img/Photos/Thumbnails/Slides/1.webp -->
+            </div>        
+            {% endfor %}
+            <div id="myModal" class="modal">
+                <span class="close">&times;</span>
+                <img class="modal-content" id="img01">
+                <div id="caption"></div>
+            </div>
+        </div>
+        {% for inm in inmueble %}
+        <p class="display-4 text-center p-3">DESDE {{inm.precio}}€ + IVA</p>
+        {% endfor %}
+        <div class="row mt-5">
+            <div class="col-12 col-md-6 pe-5">
+                {% for inm in inmueble %}
+                <h3 class="text-center pb-5">{{inm.subtitulo}}</h3>
+                <p><span class="text-muted">Provincia: </span>{{inm.provincia}}</p>
+                <p><span class="text-muted">Localidad: </span>{{inm.localidad}}</p>
+                <p><span class="text-muted">Dirección: </span>{{inm.direccion}}</p>
+                <p><span class="text-muted">Nº viviendas: </span>{{inm.num_viviendas}}</p>
+                <p><span class="text-muted">Fecha de entrega: </span>{{inm.fecha_entrega}}</p>
+                <p><span class="text-muted">Dormitorios: </span>{{inm.dormitorios}}</p>
+                <p><span class="text-muted">Superficie: </span>{{inm.superficie}}</p>
+                <p><span class="text-muted">Detalles: </span>{{inm.detalles}}</p>
+                {% endfor %}
+            </div>
+            <div class="col-12 col-md-6">
+                <!-- <div id="map"></div> -->
+                <!-- <iframe src="https://www.google.com/maps/embed/v1/MAP_MODE?key=AIzaSyBpJOyiVCuOh3wuobQQN3uKmCm7Wpg_pSg&parameters" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+                <!-- <iframe
+                width="600"
+                height="450"
+                style="border:0"
+                loading="lazy"
+                allowfullscreen
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBpJOyiVCuOh3wuobQQN3uKmCm7Wpg_pSg
+                    &q=Space+Needle,Seattle+WA"> -->
+                {% for inm in inmueble %}               
+                    <iframe
+                    style="border:0"
+                    loading="lazy"
+                    allowfullscreen
+                    referrerpolicy="no-referrer-when-downgrade"
+                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBpJOyiVCuOh3wuobQQN3uKmCm7Wpg_pSg
+                        &q={{inm.direccion}} " id="mapa">
+                    </iframe>
+                {% endfor %}
+                <p class="text-center pt-3"><strong> Teléfono:</strong> 914179610</p>
+                <p class="text-center"><strong> Contactos:</strong> <a href="mailto:web@grupoinmo.com">web@grupoinmo.com</a></p>
+                <div class="archivos">
+                    {% for arch in archivos %}
+                        {% if arch != '' %}
+                        <div class="d-flex align-items-center">
+                            <img src="{% static 'img/icons/file.png' %}" alt="" width="24" height="24">
+                            <button class="btn mt-3 text-primary" onclick="downloadCV('{{arch}}')" id="buttondownload">{{arch|cut:'detalles-archivos/'}}</button>
+                        </div>                        
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>   
+    </div>
+</div>
+
+{% endblock %}
+

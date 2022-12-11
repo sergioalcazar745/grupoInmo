@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrupoInmo | CONFIANZA, SOSTENIBLIDAD, CALIDAD</title>
+
+    <!-- Font Awesome -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" /> -->
+
+    <!-- Google Fonts Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    {% load static %}
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+    <!-- Social Media -->
+    <header>
+        <div class="container">
+            <div class="social-media d-flex justify-content-end">
+                <div class="phone me-3">                    
+                    <a href="tel:914179610"><img src="{% static 'img/icons/phone.png' %}" alt=""><span>914179610</span></a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Menu Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light" id="idMenu">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'img/logo3.png' %}" alt=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link {% if nbar == 'home' %}active{% endif %}" aria-current="page"
+                            data-scroll="home" href="{% url 'home' %}">Grupo Inmo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if nbar == 'ventas' %}active{% endif %}" data-scroll="ventas"
+                            href="{% url 'ventas' %}">Ventas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if nbar == 'proximas' %}active{% endif %}" data-scroll="proximas"
+                            href="{% url 'proximas' %}">Próximas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if nbar == 'entregadas' %}active{% endif %}" data-scroll="entregadas"
+                            href="{% url 'entregadas' %}">Entregadas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if nbar == 'noticias' %}active{% endif %}" data-scroll="noticias"
+                            href="{% url 'noticias' %}">Noticias</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {% if response != 'none' %}
+    <div class="alert {% if response == 'true' %}alert-success{% endif %}{% if response == 'false' %}alert-danger{% endif %} alert-dismissible" role="alert">
+        <span type="button" class="close" data-bs-dismiss="alert" aria-label="Close"><span aria-hidden="true" class="equis">&times;</span></span>
+        <strong>{% if response == 'true' %}¡Enhorabuena!{% endif %}{% if response == 'false' %}¡Lo sentimos!{% endif %}</strong> {{mensaje}}
+    </div>
+    {% endif %}
+
+    {% block content %}{% endblock %}
+
+    <footer>
+        <div class="container">
+            <h2>CONTACTO</h2>
+            <div class="hr"></div>
+            <p>Puede contactarnos a través de teléfono o e-mail 914179610 / web@grupoinmo.com</p>
+            <form action="" method="POST" class="form-inline w-75 d-block m-auto" id="form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label>Email *</label>
+                    <div class="input-group">{{form.email}}</div>
+                    <p class="text-danger">{{form.email.errors}}</p>
+                </div>
+                <div class="form-group">
+                    <label>Mensaje *</label>
+                    <div class="input-group">{{form.mensaje}}</div>
+                    <p class="text-danger">{{form.mensaje.errors}}</p>
+                </div>
+                <button type="submit" class="btn btn-secondary mt-2 mb-sm-0 mr-sm-1">Enviar</button>
+                <!-- <input id="submit" type="submit" class="btn btn-secondary mt-2 mb-sm-0 mr-sm-1" value="Enviar"> -->
+            </form>
+            <div class="politica">
+                <a href="{% url 'politica' %}" class="" target="_blank">Política de privacidad</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Boostrap -->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- Jquery -->
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+
+    <!-- Custom javascript -->
+    <script src="{% static 'js/script.js' %}"></script>
+
+    {% block extrajs %} {% endblock %}
+
+</body>
+
+</html>

@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section id="home">
+    <div class="titulo">
+        <h1>CONFIANZA, SOSTENIBILIDAD <br> Y <br> CALIDAD</h1>
+    </div>
+</section>
+<section id="banner">
+    <div class="container">
+        <div class="textoBanner">
+            <h2>Inmobiliario en Madrid - Grupo Inmo</h2>
+        </div>
+    </div>
+</section>
+<p class="text-center py-5 h3 lead text-cursive">“No vendo pisos. A la gente no le gusta que le vendan. A la gente lo
+    que le gusta es
+    comprar”,</p>
+<section id="contentHome" class="my-5">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-12 col-md-6">
+                <h3 class="text-center">Historia</h3>
+                <p class="pt-4">GRUPO INMO a lo largo de sus más de 20 años de actividad ha entregado más de 3000
+                    viviendas,
+                    desarrollando numerosas promociones residenciales en Madrid, Cataluña, Málaga, Castilla y León,
+                    Cantabria, entre otras Comunidades Autónomas completando con éxito su ejecución y comercialización.
+                    La mayor parte de los proyectos se han dirigido a cubrir la demanda residencial de primera vivienda
+                    en el entorno de grandes poblaciones.<br><br> Durante años se combinaron otras actuaciones en zonas
+                    de
+                    costa, la mayor parte desarrolladas en zonas turísticas de la Costa del Sol y Tarragona. Dirigidas
+                    principalmente a los mercados internacionales. Cabe destacar como operaciones más relevantes la
+                    promoción de 750 viviendas en Vicálvaro, o las casi 300 en el madrileño municipio de Tres Cantos.
+                </p>
+            </div>
+            <div class="col-12 col-md-6">
+                <img src="{% static 'img/historia3.jpg' %}" alt="historia"
+                    class="img-fluid rounded historia">
+            </div>
+        </div>
+        <div class="row pt-5">
+            <div class="col-12 col-md-6 order-2 order-md-1">
+                <img src="{% static 'img/actualidad2.jpg' %}" alt="actualidad"
+                    class="img-fluid rounded actualidad">
+            </div>
+            <div class="col-12 col-md-6 order-1 order-md-2">
+                <h3 class="text-center">Actualidad</h3>
+                <p class="pt-4">Durante los últimos cuatro años la actividad promotora se centra en Madrid capital y
+                    poblaciones próximas tales como Villanueva de la Cañada y Corredor del Henares donde se han
+                    entregado más de 100 viviendas unifamiliares.<br><br>En paralelo, mediante Promoción Delegada para
+                    Buildingcenter, S.A. (Caixabank), durante los últimos
+                    tres años se ha gestionado en Madrid la Promoción de 80 viviendas en el PAU de Carabanchel, 42
+                    viviendas en Chamartín y 20 viviendas unifamiliares en Peñagrande. Actualmente se está finalizando
+                    en la Costa del Sol otra promoción Delegada de 36 viviendas.<br><br>También ha gestionado la
+                    promoción de 134 viviendas para una Cooperativa de viviendas en Espartales
+                    Norte (Alcalá de Henares).
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="internacional">
+    <div class="container">
+        <div class="textoInternacinal">
+            <h2>INTERNACIONALES</h2>
+            <p>GRUPO INMO tiene presencia internacional estable en el sector de alquiler de maquinaria de elevación y
+                maquinaria industrial, en el Perú a través de las dos sociedades Eurogruas y Equipos SAC e IPERALQ.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Modal -->
+<!-- <button style="display:none" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="boton">
+    Launch demo modal
+</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div> -->
+{% endblock %}
+
+{% block extrajs %}
+<!-- <script>
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    const form = document.querySelector('#form');
+
+    function sendForm(event) {
+        event.preventDefault();
+        const request = new Request(
+            "{% url 'home' %}",
+            {
+                method: 'POST',
+                headers: { 'X-CSRFToken': csrfToken },
+                mode: 'same-origin',
+                body: new FormData(form)
+            }
+        );
+        fetch(request)
+            .then((response) => {
+                if (response.ok) {
+                    alert(response.ok)
+                    document.getElementById("id_email").value = "";
+                    document.getElementById("id_mensaje").value = "";
+                }
+                throw new Error('Network response was not ok.');
+            });
+                .then(function (data) {
+                    alert(data)
+                    console.log(data)
+                    if (data.status === 'ok') {
+                        alert('Mensaje enviado correctamente');
+                    } else {
+                        alert('Error al enviar el mensaje');
+                    }
+                });
+    }
+    form.addEventListener('submit', sendForm);
+</script> -->
+{% endblock %}
